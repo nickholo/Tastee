@@ -1,0 +1,32 @@
+<div class="flip-container" [class.flipped]="isFlipped" (click)="toggleFlip()">
+	<div class="flipper">
+		<!-- Front -->
+		<div class="front">
+			<ion-card>
+				<img [src]="recipe.image" />
+				<ion-card-header>
+					<ion-card-title>{{ recipe.title }}</ion-card-title>
+				</ion-card-header>
+			</ion-card>
+		</div>
+
+		<!-- Back -->
+		<div class="back">
+			<ion-card>
+				<ion-card-header>
+					<ion-card-title>Recipe</ion-card-title>
+				</ion-card-header>
+				<ion-card-content>
+					<p><strong>Ingredients:</strong></p>
+					<ul>
+						<li *ngFor="let ingredient of recipe.ingredients">
+							{{ ingredient }}
+						</li>
+					</ul>
+					<p><strong>Steps:</strong></p>
+					<p>{{ recipe.instructions }}</p>
+				</ion-card-content>
+			</ion-card>
+		</div>
+	</div>
+</div>
