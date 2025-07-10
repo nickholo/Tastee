@@ -35,3 +35,19 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --ion-background-color: #fff;
+  --ion-text-color: #000;
+  --ion-color-primary: #3880ff;
+}
+
+body.dark {
+  --ion-background-color: #000;
+  --ion-text-color: #fff;
+  --ion-color-primary: #ff6ec4;
+}

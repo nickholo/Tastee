@@ -1,27 +1,74 @@
-#container {
-  text-align: center;
+ion-content.landing {
+  background: var(--ion-background-color);
+  color: var(--ion-text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease, color 0.4s ease;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  .container {
+    text-align: center;
+    width: 100%;
+    max-width: 380px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    padding-top: 5vh;
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+    .app-logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1rem auto;
+      display: block;
+      filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+    }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0;
+      font-weight: bold;
+      transition: color 0.4s ease;
 
-  color: #8c8c8c;
+      span {
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
 
-  margin: 0;
-}
+    .tagline {
+      color: var(--ion-text-color);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0.85;
+      transition: color 0.4s ease;
+    }
 
-#container a {
-  text-decoration: none;
+    ion-button {
+      --border-radius: 12px;
+      font-size: 1.05rem;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .theme-toggle {
+      margin-top: 2rem;
+      color: var(--ion-text-color);
+      font-size: 0.9rem;
+      opacity: 0.6;
+      transition: color 0.4s ease;
+    }
+  }
+
+  // Optional smooth entry animation (can be removed if not needed)
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 }

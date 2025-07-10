@@ -1,12 +1,20 @@
-<ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title>Home</ion-title>
-	</ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="landing ion-padding">
+  <div class="container animate-fade-in">
+    <img src="../../../assets/icon.png" alt="App Logo" class="app-logo animate-scale-in" />
 
-<ion-content>
-	<p>This is the home page.</p>
+    <h1>Welcome to <span>Tastee</span></h1>
+    <p class="tagline">Swipe. Match. Cook. Repeat.</p>
+
+    <ion-button expand="block" shape="round" size="large" color="primary" class="animate-up" (click)="goToLogin()">
+      Log In
+    </ion-button>
+
+    <ion-button expand="block" shape="round" fill="clear" color="primary" class="animate-up" (click)="goToRegister()">
+      Create Account
+    </ion-button>
+
+    <ion-button fill="clear" size="small" class="theme-toggle" (click)="toggleTheme()">
+      {{ isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode' }}
+    </ion-button>
+  </div>
 </ion-content>

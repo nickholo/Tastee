@@ -1,41 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-	constructor() {}
+  private isLoggedIn = false;
 
-	private readonly mockUser = {
-		email: 'test@example.com',
-		password: 'password123',
-	};
+  login(email: string, password: string): Observable<{ token: string }> {
+    if (email === 'test@example.com' && password === 'password123') {
+      this.isLoggedIn = true;
+      localStorage.setItem('token', 'mock-token');
+      return of({ token: 'mock-token' });
+    }
+    return throwError(() => new Error('Invalid credentials'));
+  }
 
-	login(email: string, password: string): Observable<{ token: string }> {
-		if (
-			email === this.mockUser.email &&
-			password === this.mockUser.password
-		) {
-			const fakeToken = 'mock-jwt-token';
-			localStorage.setItem('token', fakeToken);
-			return of({ token: fakeToken });
-		} else {
-			return throwError(() => new Error('Invalid credentials'));
-		}
-	}
+  register(email: string, password: string): Observable<{ message: string }> {
+    this.isLoggedIn = true;
+    localStorage.setItem('token', 'mock-token');
+    return of({ message: 'Registered successfully (mock)' });
+  }
 
-	register(email: string, password: string): Observable<{ message: string }> {
-		// You can expand this to store in memory if needed
-		console.log('User registered:', { email, password });
-		return of({ message: 'User registered successfully (mock)' });
-	}
+  logout(): void {
+    this.isLoggedIn = false;
+    localStorage.removeItem('token');
+  }
 
-	logout(): void {
-		localStorage.removeItem('token');
-	}
-
-	isAuthenticated(): boolean {
-		return !!localStorage.getItem('token');
-	}
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
+  }
 }

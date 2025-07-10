@@ -6,15 +6,16 @@ import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-matches',
-  templateUrl: './matches.page.html',
-  styleUrls: ['./matches.page.scss'],
+  selector: 'app-settings',
+  templateUrl: './settings.page.html',
+  styleUrls: ['./settings.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class MatchesPage {
+export class SettingsPage {
 
   constructor(auth: AuthService, router: Router) {
     if (!auth.isAuthenticated()) router.navigate(['/login']);
   }
+
 }

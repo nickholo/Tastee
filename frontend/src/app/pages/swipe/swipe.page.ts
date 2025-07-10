@@ -6,8 +6,12 @@ import {
 	IonHeader,
 	IonTitle,
 	IonToolbar,
+	IonMenuButton,
+	IonButtons
 } from '@ionic/angular/standalone';
 import { RecipeCardComponent } from 'src/app/components/recipe-card/recipe-card.component';
+import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-swipe',
@@ -19,13 +23,15 @@ import { RecipeCardComponent } from 'src/app/components/recipe-card/recipe-card.
 		IonHeader,
 		IonTitle,
 		IonToolbar,
+		IonMenuButton,
+		IonButtons,
 		CommonModule,
 		FormsModule,
 		RecipeCardComponent,
 	],
 })
-export class SwipePage implements OnInit {
-	constructor() {}
-
-	ngOnInit() {}
+export class SwipePage {
+	constructor(auth: AuthService, router: Router) {
+    if (!auth.isAuthenticated()) router.navigate(['/login']);
+  }
 }

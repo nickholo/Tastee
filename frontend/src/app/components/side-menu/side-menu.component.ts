@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {
-	IonHeader,
-	IonItem,
-	IonList,
-	IonMenu,
-	IonTitle,
-	IonToolbar,
-	IonContent,
-} from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
 	selector: 'app-side-menu',
@@ -18,17 +10,13 @@ import {
 	imports: [
 		RouterModule,
 		CommonModule,
-		IonMenu,
-		IonHeader,
-		IonToolbar,
-		IonTitle,
-		IonList,
-		IonItem,
-		IonContent,
+		IonicModule,
 	],
 })
 export class SideMenuComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit() {}
+
+	@Output() logout = new EventEmitter<void>();
 }

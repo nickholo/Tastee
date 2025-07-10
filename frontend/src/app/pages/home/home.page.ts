@@ -1,26 +1,40 @@
 import { Component } from '@angular/core';
-import {
-	IonHeader,
-	IonToolbar,
-	IonTitle,
-	IonContent,
-	IonButtons,
-	IonMenuButton,
-} from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: 'home.page.html',
 	styleUrls: ['home.page.scss'],
 	imports: [
-		IonHeader,
-		IonToolbar,
-		IonTitle,
-		IonContent,
-		IonButtons,
-		IonMenuButton,
+		IonicModule, CommonModule
 	],
 })
 export class HomePage {
-	constructor() {}
+
+	isDarkMode = false;
+
+	constructor(private auth: AuthService, private router: Router) {
+  	}
+
+	ngOnInit() {
+  		if (this.auth.isAuthenticated()) {
+    		this.router.navigate(['/tabs']); // Redirect after view init
+  		}
+	}
+
+  	goToLogin() {
+    	this.router.navigate(['/login']);
+  	}
+
+  	goToRegister() {
+    	this.router.navigate(['/register']);
+  	}
+
+	  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    document.body.classList.toggle('dark', this.isDarkMode);
+  }
 }
