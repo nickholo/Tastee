@@ -11,6 +11,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String getMethodName() {
+        System.out.println("Homepage");
         return "index.html";
     }
     @GetMapping("/protected")

@@ -30,13 +30,13 @@ public class SecurityConfig {
     
 
     @Autowired
-    private MyUserDetailsService myUserDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private JwtFilter jwtFilter;
 
-    public SecurityConfig(MyUserDetailsService myUserDetailsService, JwtFilter jwtFilter) {
-        this.myUserDetailsService = myUserDetailsService;
+    public SecurityConfig(UserDetailsService userDetailsService, JwtFilter jwtFilter) {
+        this.userDetailsService = userDetailsService;
         this.jwtFilter = jwtFilter;
     }
 
@@ -45,17 +45,19 @@ public class SecurityConfig {
         return http
         .csrf(customizer -> customizer.disable())
         .authorizeHttpRequests(request -> request
-        .requestMatchers("/register", "/login", "/", "/error")
+        .requestMatchers("/","/register", "/login", "/error")
         .permitAll()
         .anyRequest().authenticated())
         .httpBasic(Customizer.withDefaults())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        // .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
     }
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(myUserDetailsService);
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
+
+        // Strength of encryption (How many times it hashes the password)
         provider.setPasswordEncoder(new BCryptPasswordEncoder(4));
         return provider;
     }
@@ -66,9 +68,5 @@ public class SecurityConfig {
 
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return myUserDetailsService;
-    }
 }
 

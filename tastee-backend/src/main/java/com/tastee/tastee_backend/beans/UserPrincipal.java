@@ -15,6 +15,14 @@ public class UserPrincipal implements UserDetails {
         this.user = user;
     }
 
+    public int getId() {
+        return user.getId();
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
