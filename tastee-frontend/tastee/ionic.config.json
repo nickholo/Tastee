@@ -1,0 +1,7 @@
+{
+  "name": "tastee",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

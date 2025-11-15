@@ -16,7 +16,8 @@ public class FollowService {
 
     @Autowired
     private FollowRepo followRepo;
-
+    
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     
     public Object getLoggedInUserDetails() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -34,7 +35,6 @@ public class FollowService {
     
 
     public Follow followUser(int followerId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         int userId = userPrincipal.getId();
         System.out.println(userId);
@@ -44,9 +44,12 @@ public class FollowService {
         return followRepo.save(follow);
     }
 
-    public String unfollowUser(int followerId, int followedId) {
+    public String unfollowUser(int followedId) {
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        int userId = userPrincipal.getId();
+
         Follow follow = new Follow();
-        follow.setFollowerId(followerId);
+        follow.setFollowerId(userId);
         follow.setFollowedId(followedId);
         followRepo.delete(follow);
         return "Unfollowed user with ID: " + followedId;
@@ -54,6 +57,10 @@ public class FollowService {
 
     public Object getFollowers(int userId) {
         return followRepo.findByFollowedId((long) userId);
+    }
+
+    public Object getFollowing(int userId) {
+        return followRepo.findByFollowerId((long) userId);
     }
 
 }

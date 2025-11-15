@@ -1,0 +1,19 @@
+.recipe-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* important for full height use */
+  --padding-top: 40px;
+  --padding-bottom: 0xpx;
+}
+
+app-recipe-card {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+  max-width: 420px; /* optional: keeps it tidy on larger screens */
+  height: 100%;
+}

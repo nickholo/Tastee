@@ -29,8 +29,6 @@ public class UserController {
 
     @PostMapping("/register")
     public Users register(@RequestBody Users user) {
-        // Here you would typically save the user to the database
-        // For now, we just return the user object
         System.out.println("User registered: " + user);
         return service.register(user);
     }
@@ -59,8 +57,8 @@ public class UserController {
     @DeleteMapping("/users/{id}/unfollow")
     public String unfollow(@PathVariable String id, @RequestBody String entity) {
         //TODO: process POST request
-
-        return entity;
+        int followedId = Integer.parseInt(id);
+        return followService.unfollowUser(followedId);
     }
 
     // Get list of users followed

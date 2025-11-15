@@ -22,12 +22,13 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JWTService {
 
+    // TODO change secret key to env variable
     private String secretKey = "123";
 
     public JWTService() {
         try {
             KeyGenerator keygen = KeyGenerator.getInstance("hmacSHA256");
-            // secretKey = keygen.generateKey().getEncoded().toString();
+            secretKey = keygen.generateKey().getEncoded().toString();
             SecretKey sk = keygen.generateKey();
             secretKey = Base64.getEncoder().encodeToString(sk.getEncoded());
         } catch (NoSuchAlgorithmException e) {
