@@ -17,9 +17,12 @@ export class Tab1Page {
   test: string = "https://www.thespruceeats.com/thmb/lko3xX8clhOrC894t9Drb6MoiX0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-and-hearty-vegetable-soup-99538-hero-01-1d3b936ff03144af95ddca7640259c11.jpg"
 
   ngOnInit(){
-    for (let i = 0; i<10; i++){
+    for (let i = 0; i<1; i++){
       this.feed.getFeed().subscribe((data) => {
-        this.content.push(data)
+        data.forEach(element => {
+          this.content.push(element)
+          
+        });
         console.log('Feed data received:', this.content);
     })
     }

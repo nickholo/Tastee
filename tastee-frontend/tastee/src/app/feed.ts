@@ -9,6 +9,6 @@ import { Card } from './Card';
 export class Feed {
   constructor(private http: HttpClient) { }
   getFeed() {
-    return this.http.get<Card>('./assets/data/recipe.json');
+    return this.http.get<Card[]>('./assets/data/recipe.json');
   }
 }

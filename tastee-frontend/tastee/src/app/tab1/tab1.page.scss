@@ -1,19 +1,81 @@
 .recipe-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   align-items: center;
-  height: 100%; /* important for full height use */
-  --padding-top: 40px;
-  --padding-bottom: 0xpx;
+  justify-items: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 app-recipe-card {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-inline: auto;
-  max-width: 420px; /* optional: keeps it tidy on larger screens */
-  height: 100%;
+  grid-column: 1;
+  grid-row: 1;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform-origin: center center;
+  transition: transform 0.3s ease-out;
+  
+  /* Responsive sizing for different screen sizes */
+  width: min(380px, 90vw);
+  height: calc(100vh - 120px); /* Reduced from 180px to account for actual mobile UI */
+  max-height: none; /* Remove max-height on mobile for full usage */
+  
+  /* Mobile-first approach with better calculations */
+  @media (max-width: 767px) {
+    height: calc(100vh - 100px); /* Even tighter on small mobile */
+    width: min(350px, 95vw);
+  }
+  
+  /* Media queries for better responsive behavior */
+  @media (min-width: 768px) {
+    width: min(450px, 70vw);
+    height: calc(100vh - 140px);
+    max-height: 800px;
+  }
+  
+  @media (min-width: 1024px) {
+    width: min(500px, 60vw);
+    height: calc(100vh - 120px);
+    max-height: 900px;
+  }
+  
+  @media (min-width: 1440px) {
+    width: min(550px, 50vw);
+    height: calc(100vh - 100px);
+    max-height: 1000px;
+  }
+  
+  /* Stack cards with different z-index and slight transforms for visual depth */
+  &:nth-child(1) {
+    z-index: 10;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  
+  &:nth-child(2) {
+    z-index: 9;
+    transform: translate(-50%, -50%) scale(0.98) rotate(-1deg) translateY(5px);
+  }
+  
+  &:nth-child(3) {
+    z-index: 8;
+    transform: translate(-50%, -50%) scale(0.96) rotate(1deg) translateY(10px);
+  }
+  
+  &:nth-child(4) {
+    z-index: 7;
+    transform: translate(-50%, -50%) scale(0.94) rotate(-0.5deg) translateY(15px);
+  }
+  
+  /* Hide cards beyond the 4th */
+  &:nth-child(n+5) {
+    opacity: 0;
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(0.9) translateY(20px);
+  }
 }
