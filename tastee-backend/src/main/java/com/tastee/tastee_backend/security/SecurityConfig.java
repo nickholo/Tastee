@@ -3,6 +3,7 @@ package com.tastee.tastee_backend.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,12 +20,14 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 import com.tastee.tastee_backend.database.UserRepo;
 import com.tastee.tastee_backend.service.MyUserDetailsService;
 
 @Configuration
-@EnableWebSecurity
+// @EnableWebSecurity Hidden behind dev profile, since it causes issues with testing and development. We will use DevSecurityConfig for that.
+@Profile("!dev")  // only active when NOT in dev profile
 public class SecurityConfig {
 
     
@@ -35,6 +38,9 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
+
     public SecurityConfig(UserDetailsService userDetailsService, JwtFilter jwtFilter) {
         this.userDetailsService = userDetailsService;
         this.jwtFilter = jwtFilter;
@@ -43,6 +49,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+        .cors(cors -> cors.configurationSource(corsConfigurationSource))
         .csrf(customizer -> customizer.disable())
         .authorizeHttpRequests(request -> request
         .requestMatchers("/","/register", "/login", "/error")

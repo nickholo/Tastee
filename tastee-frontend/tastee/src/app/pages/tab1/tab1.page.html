@@ -15,7 +15,7 @@
 
   <ion-content fullscreen class="recipe-content">
     @for (card of content; track card.cardId) {
-      <app-recipe-card (swiped)="updateFeed($event)" [cardId]="card.cardId" [imgUrl]="card.imgurl"></app-recipe-card>
+      <app-recipe-card (swiped)="updateFeed($event)" [card]="card"></app-recipe-card>
   
 }
 </ion-content>

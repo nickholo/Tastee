@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle } from '@ionic/angular/standalone';
-import { Feed } from '../feed';
+import { Feed } from '../../../feed-service';
 import { NgOptimizedImage } from "@angular/common";
+import { Card } from 'src/app/Card';
 @Component({
   selector: 'app-recipe-card',
   templateUrl: './recipe-card.component.html',
@@ -10,21 +11,24 @@ import { NgOptimizedImage } from "@angular/common";
 })
 export class RecipeCardComponent  implements OnInit {
 
-  @Input() cardId!: number;
-  @Input() imgUrl!: string;
+  @Input() card!: Card;
   @Output() swiped = new EventEmitter<{ action: 'like' | 'dislike', cardId: number }>;
   animation: boolean = false;
 
-  constructor() { }
+  constructor() {
+    // console.log("Card within Constructor: " +this.card)
+   }
 
   ngOnInit() {
-    console.log('RecipeCardComponent initialized', this.cardId, this.imgUrl);
     
   }
   handleCardClick() {
     console.log('Recipe card clicked!');
-    this.swiped.emit({ action: 'like', cardId: this.cardId });
     this.animation = true;
+  }
+  onAnimationEnd(){
+    this.swiped.emit({ action: 'like', cardId: this.card.cardId });
+    console.log("Animation Ended")
   }
 
 }

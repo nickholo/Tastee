@@ -20,6 +20,7 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
+    // Currently we are storing the whole user object in the post, which is not ideal. We should only store the user id and then fetch the user when needed. But for simplicity we will keep it like this for now.
     @ManyToOne
     @JoinColumn(name = "authorId", referencedColumnName = "id", nullable = false)
     private Users author;

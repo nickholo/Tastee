@@ -8,8 +8,11 @@ import com.tastee.tastee_backend.beans.Users;
 import com.tastee.tastee_backend.service.FollowService;
 import com.tastee.tastee_backend.service.UserService;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,9 +43,12 @@ public class UserController {
     
 
     @PostMapping("/login")
-    public String login(@RequestBody Users user){
+    public ResponseEntity<Map<String, String>>login(@RequestBody Users user){
         System.out.println("User login attempt: " + user);
-        return service.verify(user);
+        String token = service.verify(user);
+
+        //Wrap the token in a JSON response
+        return ResponseEntity.ok(Map.of("token", token));
     }
 
     // Follow a user

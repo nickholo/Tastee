@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,15 +13,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.tastee.tastee_backend.service.JWTService;
+import com.tastee.tastee_backend.service.PostService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Component
+@Profile("!dev")  // only active when NOT in dev profile
 public class JwtFilter extends OncePerRequestFilter{
+    private static final Logger log = LoggerFactory.getLogger(JwtFilter.class);
+
 
     @Autowired
     private JWTService jwtService;
@@ -39,6 +47,7 @@ public class JwtFilter extends OncePerRequestFilter{
             try {
                 username = jwtService.extractUsername(token);
             } catch (Exception e) {
+                log.error("Invalid JWT token: {}", e.getMessage());
                 System.out.println(username);
                 System.out.println("Invalid JWT token: " + e.getMessage());
             }

@@ -19,8 +19,13 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class JWTService {
+    private static final Logger log = LoggerFactory.getLogger(JWTService.class);
+
 
     // TODO change secret key to env variable
     private String secretKey = "123";

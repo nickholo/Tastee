@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { describe, it, beforeEach, expect } from '@jest/globals';
 
-import { Feed } from './feed-service';
+import { Auth } from './auth-service';
 
-describe('Feed', () => {
-  let service: Feed;
+describe('Auth', () => {
+  let service: Auth;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Feed);
+    service = TestBed.inject(Auth);
   });
 
   it('should be created', () => {
