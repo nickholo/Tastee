@@ -5,6 +5,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+// Dev CORS config to allow requests from Angular dev server.
 @Configuration
 public class CorsConfig {
 

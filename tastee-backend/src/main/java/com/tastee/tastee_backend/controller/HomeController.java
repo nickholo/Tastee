@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class HomeController {
 
+    // Eventually will return homepage
     @GetMapping("/")
     public String getMethodName() {
         System.out.println("Homepage");

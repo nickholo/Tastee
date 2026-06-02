@@ -9,24 +9,24 @@ import jakarta.persistence.IdClass;
 public class Follow {
 
     @Id
-    private int followerId;
+    private Long followerId;
 
     @Id
-    private int followedId;
+    private Long followedId;
 
-    public int getFollowerId() {
+    public Long getFollowerId() {
         return followerId;
     }
 
-    public void setFollowerId(int followerId) {
+    public void setFollowerId(Long followerId) {
         this.followerId = followerId;
     }
 
-    public int getFollowedId() {
+    public Long getFollowedId() {
         return followedId;
     }
 
-    public void setFollowedId(int followedId) {
+    public void setFollowedId(Long followedId) {
         this.followedId = followedId;
     }
 

@@ -1,13 +1,20 @@
-// package com.tastee.tastee_backend.beans;
+package com.tastee.tastee_backend.beans;
 
-// import jakarta.persistence.Entity;
+import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-// @Entity
-// public class Ingredient {
+@Entity
+public class Ingredient {
     
-//     String name;
+    @Id
+    private Long id;
 
-//     int calories;
+    @NonNull
+    String name;
+    
+
+    int calories;
 
     
-// }
+}

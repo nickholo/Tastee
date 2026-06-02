@@ -1,0 +1,95 @@
+{
+  "folders": [
+    {
+      "name": "tastee-backend",
+      "path": "tastee-backend",
+    },
+    {
+      "name": "tastee-frontend",
+      "path": "tastee-frontend/tastee",
+    },
+    {
+      "path": "python service",
+    },
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "window.zoomLevel": 1,
+    "editor.tabSize": 2,
+    "files.exclude": {
+      "**/target": true,
+      "**/.angular/cache": true,
+      "**/.DS_Store": true,
+    },
+    "java.compile.nullAnalysis.mode": "disabled",
+  },
+  "extensions": {
+    "recommendations": [
+      "vscjava.vscode-java-pack",
+      "vmware.vscode-spring-boot",
+      "angular.ng-template",
+      "esbenp.prettier-vscode",
+    ],
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Backend: Run (dev profile)",
+        "type": "shell",
+        "command": "./mvnw spring-boot:run -Dspring-boot.run.profiles=dev",
+        "options": {
+          "cwd": "${workspaceFolder:tastee-backend}",
+        },
+        "group": "build",
+        "isBackground": true,
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "showReuseMessage": false,
+          "clear": true,
+        },
+        "problemMatcher": "$msCompile",
+      },
+      {
+        "label": "Frontend: Serve",
+        "type": "shell",
+        "command": "source ~/.nvm/nvm.sh && ionic serve",
+        "options": {
+          "cwd": "${workspaceFolder:tastee-frontend}",
+          "shell": {
+            "executable": "/bin/zsh",
+            "args": ["-l", "-c"],
+          },
+        },
+        "group": "build",
+        "isBackground": true,
+        "presentation": {
+          "reveal": "always",
+          "panel": "dedicated",
+          "showReuseMessage": false,
+          "clear": true,
+        },
+        "problemMatcher": {
+          "owner": "tastee-frontend",
+          "pattern": { "regexp": "^$" },
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Building\\.\\.\\.",
+            "endsPattern": "Development server running",
+          },
+        },
+      },
+      {
+        "label": "Tastee: Start all",
+        "dependsOn": ["Backend: Run (dev profile)", "Frontend: Serve"],
+        "dependsOrder": "parallel",
+        "group": {
+          "kind": "build",
+          "isDefault": true,
+        },
+        "problemMatcher": [],
+      },
+    ],
+  },
+}

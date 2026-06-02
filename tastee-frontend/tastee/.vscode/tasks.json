@@ -1,0 +1,111 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Frontend: Serve (ionic serve)",
+      "type": "shell",
+      "command": "ionic serve",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Serve with open (launches browser)",
+      "type": "shell",
+      "command": "ng serve --open",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Run tests",
+      "type": "shell",
+      "command": "ng test",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Build (prod)",
+      "type": "shell",
+      "command": "ng build --configuration production",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Lint",
+      "type": "shell",
+      "command": "ng lint",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: Install dependencies (npm install)",
+      "type": "shell",
+      "command": "npm install",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+  "label": "Frontend: Serve (Ionic Lab)",
+  "type": "shell",
+  "command": "ionic serve --lab",
+  "options": {
+    "cwd": "${workspaceFolder}/tastee"
+  },
+  "presentation": {
+    "reveal": "always",
+    "panel": "dedicated",
+    "showReuseMessage": false,
+    "clear": true
+  },
+  "problemMatcher": "$tsc"
+}
+  ]
+}

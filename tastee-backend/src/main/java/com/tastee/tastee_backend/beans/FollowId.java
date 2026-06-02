@@ -6,30 +6,30 @@ import java.util.Objects;
 // Class representing the composite key for the Follow entity
 public class FollowId implements Serializable {
 
-    private int followerId;
-    private int followedId;
+    private Long followerId;
+    private Long followedId;
 
     // Deafult Required by JPA
     public FollowId() {};
-    public FollowId(int followerId, int followedId) {
+    public FollowId(Long followerId, Long followedId) {
         this.followerId = followerId;
     this.followedId = followedId;
     }
 
     // Getters and Setters
-    public int getFollowerId() {
+    public Long getFollowerId() {
         return followerId;
     }
 
-    public void setFollowerId(int followerId) {
+    public void setFollowerId(Long followerId) {
         this.followerId = followerId;
     }
 
-    public int getFollowedId() {
+    public Long getFollowedId() {
         return followedId;
     }
 
-    public void setFollowedId(int followedId) {
+    public void setFollowedId(Long followedId) {
         this.followedId = followedId;
     }
 

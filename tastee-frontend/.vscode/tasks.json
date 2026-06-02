@@ -1,0 +1,114 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Frontend: Serve",
+      "type": "shell",
+      "command": "ionic serve",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Serve with open",
+      "type": "shell",
+      "command": "ionic serve --open",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Serve (Ionic Lab)",
+      "type": "shell",
+      "command": "ionic serve --lab",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Run tests",
+      "type": "shell",
+      "command": "ng test",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Build (prod)",
+      "type": "shell",
+      "command": "ng build --configuration production",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "Frontend: Lint",
+      "type": "shell",
+      "command": "ng lint",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend: Install dependencies",
+      "type": "shell",
+      "command": "npm install",
+      "options": {
+        "cwd": "${workspaceFolder}/tastee"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

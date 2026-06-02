@@ -51,7 +51,7 @@ public class DevSecurityConfig {
                     FilterChain filterChain) throws ServletException, IOException {
                 // Create a dummy user for development
                 Users dummyUser = new Users();
-                dummyUser.setId(999);
+                dummyUser.setId(Long.valueOf(999));
                 dummyUser.setUsername("dev-user");
                 
                 // Set the dummy user as authenticated in the security context

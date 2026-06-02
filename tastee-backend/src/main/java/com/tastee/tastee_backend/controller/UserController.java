@@ -54,7 +54,7 @@ public class UserController {
     // Follow a user
     @PostMapping("/users/{id}/follow")
     public Follow follow(@PathVariable String id, @RequestBody User entity) {
-        int followerId = Integer.parseInt(id);
+        Long followerId = Long.parseLong(id);
         
         return followService.followUser(followerId);
     }
@@ -63,7 +63,7 @@ public class UserController {
     @DeleteMapping("/users/{id}/unfollow")
     public String unfollow(@PathVariable String id, @RequestBody String entity) {
         //TODO: process POST request
-        int followedId = Integer.parseInt(id);
+        Long followedId = Long.parseLong(id);
         return followService.unfollowUser(followedId);
     }
 

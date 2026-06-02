@@ -3,6 +3,8 @@ package com.tastee.tastee_backend.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -12,22 +14,23 @@ import jakarta.validation.constraints.NotNull;
 public class Users {
 
     @Id
-    private int id;
+    private Long id;
 
     @NotNull
     private String username;
 
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // This will prevent the password from being serialized and sent back to the client
     private String password;
 
     @OneToMany(mappedBy = "author")
     private List<Post> posts = new ArrayList<>();
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -34,9 +34,9 @@ public class FollowService {
 
     
 
-    public Follow followUser(int followerId) {
+    public Follow followUser(Long followerId) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        int userId = userPrincipal.getId();
+        Long userId = userPrincipal.getId();
         System.out.println(userId);
         Follow follow = new Follow();
         follow.setFollowerId(followerId);
@@ -44,9 +44,9 @@ public class FollowService {
         return followRepo.save(follow);
     }
 
-    public String unfollowUser(int followedId) {
+    public String unfollowUser(Long followedId) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        int userId = userPrincipal.getId();
+        Long userId = userPrincipal.getId();
 
         Follow follow = new Follow();
         follow.setFollowerId(userId);

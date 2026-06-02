@@ -15,12 +15,13 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
 
     // Currently we are storing the whole user object in the post, which is not ideal. We should only store the user id and then fetch the user when needed. But for simplicity we will keep it like this for now.
+    // Should use a DTO
     @ManyToOne
     @JoinColumn(name = "authorId", referencedColumnName = "id", nullable = false)
     private Users author;
