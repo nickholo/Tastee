@@ -12,4 +12,6 @@ import com.tastee.tastee_backend.beans.FollowId;
 public interface FollowRepo extends JpaRepository<Follow, FollowId> {
     List<Follow> findByFollowerId(Long followerId);
     List<Follow> findByFollowedId(Long followedId);
+    long countByFollowerId(Long followingId);
+    long countByFollowedId(Long followedId);
 }

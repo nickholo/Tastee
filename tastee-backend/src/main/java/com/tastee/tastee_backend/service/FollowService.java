@@ -59,7 +59,7 @@ public class FollowService {
         return followRepo.findByFollowedId((long) userId);
     }
 
-    public Object getFollowing(int userId) {
+    public Object getFollowed(int userId) {
         return followRepo.findByFollowerId((long) userId);
     }
 

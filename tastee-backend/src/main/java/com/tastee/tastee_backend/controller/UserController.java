@@ -62,24 +62,21 @@ public class UserController {
     // Unfollow a user
     @DeleteMapping("/users/{id}/unfollow")
     public String unfollow(@PathVariable String id, @RequestBody String entity) {
-        //TODO: process POST request
         Long followedId = Long.parseLong(id);
         return followService.unfollowUser(followedId);
     }
 
     // Get list of users followed
-    @GetMapping("/users/{id}/following")
+    @GetMapping("/users/{id}/followed")
     public String getFollowing(@PathVariable String id) {
-        //TODO: process GET request
 
-        return "List of users followed by user " + id;
+        return followService.getFollowed(Integer.parseInt(id)).toString();
     }
     // Get list of followers
     @GetMapping("/users/{id}/followers")
     public String getFollowers(@PathVariable String id) {
-        //TODO: process GET request
 
-        return "List of followers for user " + id;
+        return followService.getFollowers(Integer.parseInt(id)).toString();
     }
 
 }
