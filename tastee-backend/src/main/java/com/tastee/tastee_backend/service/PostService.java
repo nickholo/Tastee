@@ -96,7 +96,7 @@ public class PostService {
         return postRepo.findAll(PageRequest.of((int) randomIndex, 1)).stream().findFirst().orElse(null);
     }
 
-    public Post getPostById(int id) {
+    public Post getPostById(Long id) {
         return postRepo.findById(id).orElse(null);
     }
 
@@ -106,7 +106,7 @@ public class PostService {
         return postRepo.save(post);
     }
 
-    public ResponseEntity<String> deletePost(int id) {
+    public ResponseEntity<String> deletePost(Long id) {
         postRepo.deleteById(id);
 
         return ResponseEntity.ok("Deleted post with id: " + id);
@@ -118,7 +118,7 @@ public class PostService {
         return posts;
     }
 
-    public ResponseEntity<Map<String, Object>> likePost(int id) {
+    public ResponseEntity<Map<String, Object>> likePost(Long id) {
         // Get the post by ID
         Post post = postRepo.findById(id).orElse(null);
 
@@ -135,7 +135,7 @@ public class PostService {
                 "id", id));
     }
 
-    public ResponseEntity<String> unlikePost(int id) {
+    public ResponseEntity<String> unlikePost(Long id) {
         Users user = getCurrentUser();
         Post post = postRepo.findById(id).orElse(null);
         postInteractionRepo.deleteByUserIdAndPostId(

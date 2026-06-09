@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.tastee.tastee_backend.service.JWTService;
-import com.tastee.tastee_backend.service.PostService;
+
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

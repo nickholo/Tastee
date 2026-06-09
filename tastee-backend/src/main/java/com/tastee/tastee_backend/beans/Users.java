@@ -1,13 +1,11 @@
 package com.tastee.tastee_backend.beans;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -21,10 +19,27 @@ public class Users {
 
     @NotNull
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // This will prevent the password from being serialized and sent back to the client
-    private String password;
+    private String password; // TODO - user DTO
 
-    @OneToMany(mappedBy = "author")
-    private List<Post> posts = new ArrayList<>();
+    private String profilePictureUrl;
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
+    }
+
+    private String bio;
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     public Long getId() {
         return id;

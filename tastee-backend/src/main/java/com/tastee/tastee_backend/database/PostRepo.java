@@ -9,7 +9,7 @@ import com.tastee.tastee_backend.beans.Post;
 import com.tastee.tastee_backend.beans.Users;
 
 @Repository
-public interface PostRepo extends JpaRepository<Post, Integer> {
+public interface PostRepo extends JpaRepository<Post, Long> {
     List<Post> findByAuthor(Users author);
     
     

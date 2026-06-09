@@ -1,0 +1,108 @@
+<ion-header class="profile-header" [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="profile-page">
+  <div class="profile-shell">
+    @if (profile) {
+    <section class="profile-hero">
+      <div class="profile-card">
+        <div class="profile-avatar-wrap">
+          <img
+            class="profile-avatar"
+            [src]="profile.profilePictureUrl"
+            [alt]="profile.username + ' profile picture'" />
+        </div>
+
+        <div class="profile-copy">
+          <p class="profile-kicker">Food creator</p>
+          <h1>{{ profile.username }}</h1>
+          <p class="profile-bio">{{ profile.bio }}</p>
+
+          <div class="profile-stats">
+            <div class="stat-pill">
+              <span class="stat-value">{{ profile.followersCount }}</span>
+              <span class="stat-label">Followers</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-value">{{ profile.followingCount }}</span>
+              <span class="stat-label">Following</span>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button type="button" class="primary-action">Edit profile</button>
+            <button type="button" class="secondary-action">Share
+              profile</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    } @else {
+    <section class="profile-loading">
+      <div class="loading-skeleton avatar"></div>
+      <div class="loading-skeleton line long"></div>
+      <div class="loading-skeleton line medium"></div>
+      <div class="loading-skeleton line short"></div>
+    </section>
+    }
+
+    <section class="profile-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-label">Gallery</p>
+          <h2>Recent posts</h2>
+        </div>
+        <span class="section-count">4 posts</span>
+      </div>
+
+      <div class="post-grid">
+        <article class="post-card featured">
+          <div class="post-thumb thumb-salad"></div>
+          <div class="post-body">
+            <div>
+              <p class="post-meta">Breakfast · 12 likes</p>
+              <h3>Berry power bowl</h3>
+            </div>
+            <p>Bright fruit, toasted oats, and a creamy yogurt base.</p>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-thumb thumb-pasta"></div>
+          <div class="post-body">
+            <div>
+              <p class="post-meta">Lunch · 28 likes</p>
+              <h3>Tomato basil pasta</h3>
+            </div>
+            <p>Comfort food with a clean, restaurant-style finish.</p>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-thumb thumb-curry"></div>
+          <div class="post-body">
+            <div>
+              <p class="post-meta">Dinner · 19 likes</p>
+              <h3>Green curry bowl</h3>
+            </div>
+            <p>Creamy, aromatic, and built for a quick weeknight reset.</p>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <div class="post-thumb thumb-dessert"></div>
+          <div class="post-body">
+            <div>
+              <p class="post-meta">Snack · 7 likes</p>
+              <h3>Citrus chia cups</h3>
+            </div>
+            <p>Small-batch prep with a crisp, fresh finish.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</ion-content>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tastee.tastee_backend.beans.Users;
 import com.tastee.tastee_backend.database.UserRepo;
+import com.tastee.tastee_backend.dto.ProfileDTO;
 
 
 @Service
@@ -22,6 +23,9 @@ public class UserService {
 
     @Autowired
     private JWTService jwtService;
+
+    @Autowired
+    private FollowService followService;
 
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
@@ -40,5 +44,21 @@ public class UserService {
         } else {
             return "Authentication failed";
         }
+    }
+
+    public ProfileDTO getProfile(Long userId) {
+        Users user = repo.findById(userId).orElse(null);
+        if (user == null) {
+            return null; 
+        }
+        ProfileDTO profile = new ProfileDTO();
+        profile.setUsername(user.getUsername());
+        profile.setBio(user.getBio());
+        profile.setProfilePictureUrl(user.getProfilePictureUrl());
+        profile.setFollowersCount(followService.countFollowers(userId));
+        profile.setFollowingCount(followService.countFollowed(userId));
+
+
+        return profile;
     }
 }

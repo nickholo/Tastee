@@ -27,7 +27,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     IonToolbar,
     IonTitle,
     IonContent,
-    ExploreContainerComponent,
     IonCard,
     IonCardHeader,
     IonButton,

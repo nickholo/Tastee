@@ -46,7 +46,7 @@ export class RecipeCardComponent implements OnInit {
   ngOnInit() {
 
     // Trace
-    console.log("Card Initalized: ")
+    console.log("Card Initalized: ", this.card)
   }
   handleCardClick() {
     console.log('Recipe card clicked!');

@@ -6,7 +6,8 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        // TODO Fix active Icon 
+        path: 'home',
         loadComponent: () => import('../pages/tab1/tab1.page').then(m => m.Tab1Page)
       },
       {
@@ -14,12 +15,12 @@ export const routes: Routes = [
         loadComponent: () => import('../pages/tab2/tab2.page').then(m => m.Tab2Page)
       },
       {
-        path: 'tab3',
-        loadComponent: () => import('../pages/tab3/tab3.page').then(m => m.Tab3Page)
+        path: 'profile',
+        loadComponent: () => import('../pages/profile/profile.page').then(m => m.ProfilePage)
       },
       {
         path: '',
-        redirectTo: 'tab1',   // relative redirect — no leading slash
+        redirectTo: 'home',   // relative redirect — no leading slash
         pathMatch: 'full'
       }
     ]

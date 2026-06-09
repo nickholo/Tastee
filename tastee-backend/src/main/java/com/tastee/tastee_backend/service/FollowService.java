@@ -1,6 +1,8 @@
 package com.tastee.tastee_backend.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -55,12 +57,20 @@ public class FollowService {
         return "Unfollowed user with ID: " + followedId;
     }
 
-    public Object getFollowers(int userId) {
+    public List<Follow> getFollowers(Long userId) {
         return followRepo.findByFollowedId((long) userId);
     }
 
-    public Object getFollowed(int userId) {
+    public List<Follow> getFollowed(Long userId) {
         return followRepo.findByFollowerId((long) userId);
+    }
+
+    public long countFollowers(Long userId) {
+        return followRepo.countByFollowedId((long) userId);
+    }
+
+    public long countFollowed(Long userId) {
+        return followRepo.countByFollowerId((long) userId);
     }
 
 }

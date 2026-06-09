@@ -1,4 +1,5 @@
 package com.tastee.tastee_backend.security;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +27,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 
 @Configuration
-@Profile("dev")  // only loads when dev profile is active
+@Profile("dev") // only loads when dev profile is active
 public class DevSecurityConfig {
     @Autowired
     private CorsConfigurationSource corsConfigurationSource;
@@ -34,37 +35,38 @@ public class DevSecurityConfig {
     @Bean
     public SecurityFilterChain devFilterChain(HttpSecurity http) throws Exception {
         return http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource))
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()  // allow everything
-            )
-            .addFilterBefore(devAuthenticationFilter(), SecurityContextHolderFilter.class)
-            .build();
+                .cors(cors -> cors.configurationSource(corsConfigurationSource))
+                .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll() // allow everything
+                )
+                .addFilterBefore(devAuthenticationFilter(), SecurityContextHolderFilter.class)
+                .build();
     }
-    
+
     @Bean
     public OncePerRequestFilter devAuthenticationFilter() {
         return new OncePerRequestFilter() {
             @Override
-            protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, 
+            protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                     FilterChain filterChain) throws ServletException, IOException {
                 // Create a dummy user for development
                 Users dummyUser = new Users();
                 dummyUser.setId(Long.valueOf(999));
                 dummyUser.setUsername("dev-user");
-                
+
                 // Set the dummy user as authenticated in the security context
                 Collection<GrantedAuthority> authorities = new ArrayList<>();
-                UsernamePasswordAuthenticationToken auth = 
-                    new UsernamePasswordAuthenticationToken(dummyUser, null, authorities);
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(dummyUser, null,
+                        authorities);
                 SecurityContextHolder.getContext().setAuthentication(auth);
-                
+
                 filterChain.doFilter(request, response);
             }
         };
     }
-    
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

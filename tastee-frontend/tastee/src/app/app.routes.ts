@@ -20,5 +20,9 @@ export const routes: Routes = [
   {
     path: '**',                                              // catch all unknown routes
     redirectTo: environment.production ? 'login' : 'app'   // redirect based on environment
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
   }
 ];

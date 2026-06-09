@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tastee.tastee_backend.beans.Follow;
 import com.tastee.tastee_backend.beans.Users;
+import com.tastee.tastee_backend.dto.ProfileDTO;
 import com.tastee.tastee_backend.service.FollowService;
 import com.tastee.tastee_backend.service.UserService;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class UserController {
 
     @Autowired
     private FollowService followService;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/register")
     public Users register(@RequestBody Users user) {
@@ -68,15 +73,31 @@ public class UserController {
 
     // Get list of users followed
     @GetMapping("/users/{id}/followed")
-    public String getFollowing(@PathVariable String id) {
+    public List<Follow> getFollowing(@PathVariable String id) {
 
-        return followService.getFollowed(Integer.parseInt(id)).toString();
+        return followService.getFollowed(Long.parseLong(id));
     }
     // Get list of followers
     @GetMapping("/users/{id}/followers")
-    public String getFollowers(@PathVariable String id) {
+    public List<Follow> getFollowers(@PathVariable String id) {
 
-        return followService.getFollowers(Integer.parseInt(id)).toString();
+        return followService.getFollowers(Long.parseLong(id));
+    }
+
+    @GetMapping("/users/{id}/followers/count")
+    public String getFollowersCount(@PathVariable String id) {
+        return String.valueOf(followService.countFollowers(Long.parseLong(id)));
+    }
+
+    @GetMapping("/users/{id}/followed/count")
+    public String getFollowedCount(@PathVariable String id) {
+        return String.valueOf(followService.countFollowed(Long.parseLong(id)));
+    }
+
+    @GetMapping("/users/{id}/profile")
+    public ProfileDTO getProfile(@PathVariable String id) {
+
+        return userService.getProfile(Long.parseLong(id));
     }
 
 }

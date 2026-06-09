@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { RecipeCardComponent } from "./recipe-card/recipe-card.component";
 import { Card } from '../../Card';
-import { Feed } from '../../feed-service';
+import { FeedService } from '../../feed-service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,7 +11,7 @@ import { Feed } from '../../feed-service';
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, RecipeCardComponent],
 })
 export class Tab1Page {
-  constructor(private feed: Feed) {}
+  constructor(private feed: FeedService) {}
 
   content: Card[] = []
 

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class Feed {
+export class FeedService {
   apiUrl: string = environment.apiUrl;
   constructor(private http: HttpClient) {}
 

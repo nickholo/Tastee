@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tastee.tastee_backend.beans.Post;
 import com.tastee.tastee_backend.beans.Users;
 import com.tastee.tastee_backend.service.PostService;
-import com.tastee.tastee_backend.service.MyUserDetailsService;
+
 
 import java.util.List;
 import java.util.Map;
@@ -51,7 +51,7 @@ public class PostController {
 
     // Get a recipe by ID
     @GetMapping("/post/{id}")
-    public Post getPostById(@PathVariable int id) {
+    public Post getPostById(@PathVariable Long id) {
         return postService.getPostById(id);
     }
 
@@ -67,7 +67,7 @@ public class PostController {
 
     // Delete a recipe
     @DeleteMapping("/post/{id}")
-    public String deleteRecipe(@PathVariable int id) {
+    public String deleteRecipe(@PathVariable Long id) {
         postService.deletePost(id);
         return "deleted bruh";
     }
@@ -89,7 +89,7 @@ public class PostController {
 
     // Like a recipe
     @PostMapping("/post/{id}/like")
-    public ResponseEntity<Map<String, Object>> likePost(@PathVariable int id) {
+    public ResponseEntity<Map<String, Object>> likePost(@PathVariable Long id) {
         log.info("Liking post with id: {}", id);
         return postService.likePost(id);
 
@@ -97,7 +97,7 @@ public class PostController {
 
     // Unlike a recipe
     @PostMapping("/post/{id}/unlike")
-    public ResponseEntity<String> unlikePost(@PathVariable int id) {
+    public ResponseEntity<String> unlikePost(@PathVariable Long id) {
 
         return postService.unlikePost(id);
     }
