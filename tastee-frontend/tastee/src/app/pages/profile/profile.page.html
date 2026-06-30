@@ -8,19 +8,22 @@
   <div class="profile-shell">
     @if (profile) {
     <section class="profile-hero">
-      <div class="profile-card">
+      <ion-card class="profile-card">
         <div class="profile-avatar-wrap">
-          <img
-            class="profile-avatar"
-            [src]="profile.profilePictureUrl"
-            [alt]="profile.username + ' profile picture'" />
+          <ion-avatar class="profile-avatar">
+            <ion-img
+              [src]="getProfileImageUrl()"
+              [alt]="profile.username + ' profile picture'"></ion-img>
+          </ion-avatar>
         </div>
 
-        <div class="profile-copy">
+        <ion-card-header class="profile-copy">
           <p class="profile-kicker">Food creator</p>
-          <h1>{{ profile.username }}</h1>
-          <p class="profile-bio">{{ profile.bio }}</p>
+          <ion-card-title>{{ profile.username }}</ion-card-title>
+          <ion-card-subtitle>{{ profile.bio }}</ion-card-subtitle>
+        </ion-card-header>
 
+        <ion-card-content>
           <div class="profile-stats">
             <div class="stat-pill">
               <span class="stat-value">{{ profile.followersCount }}</span>
@@ -33,16 +36,22 @@
           </div>
 
           <div class="profile-actions">
-            <button type="button" class="primary-action">Edit profile</button>
-            <button type="button" class="secondary-action">Share
-              profile</button>
+            <ion-button class="primary-action" shape="round">
+              Edit profile
+            </ion-button>
+            <ion-button class="secondary-action" fill="outline" shape="round">
+              Share profile
+            </ion-button>
           </div>
-        </div>
-      </div>
+        </ion-card-content>
+      </ion-card>
     </section>
     } @else {
     <section class="profile-loading">
-      <div class="loading-skeleton avatar"></div>
+      <ion-avatar class="loading-skeleton avatar">
+        <ion-img [src]="profileFallbackImageUrl"
+          alt="Profile placeholder"></ion-img>
+      </ion-avatar>
       <div class="loading-skeleton line long"></div>
       <div class="loading-skeleton line medium"></div>
       <div class="loading-skeleton line short"></div>
@@ -55,53 +64,31 @@
           <p class="section-label">Gallery</p>
           <h2>Recent posts</h2>
         </div>
-        <span class="section-count">4 posts</span>
+        <span class="section-count">{{ recentPosts.length }} posts</span>
       </div>
 
       <div class="post-grid">
-        <article class="post-card featured">
-          <div class="post-thumb thumb-salad"></div>
-          <div class="post-body">
-            <div>
-              <p class="post-meta">Breakfast · 12 likes</p>
-              <h3>Berry power bowl</h3>
-            </div>
-            <p>Bright fruit, toasted oats, and a creamy yogurt base.</p>
-          </div>
-        </article>
+        @defer {
 
-        <article class="post-card">
-          <div class="post-thumb thumb-pasta"></div>
-          <div class="post-body">
-            <div>
-              <p class="post-meta">Lunch · 28 likes</p>
-              <h3>Tomato basil pasta</h3>
-            </div>
-            <p>Comfort food with a clean, restaurant-style finish.</p>
-          </div>
-        </article>
+        
+        @for (post of recentPosts; track post.cardId) {
+        <ion-card class="post-card" [class.featured]="$first">
+          <ion-img class="post-image"
+            [src]="post.imgUrl || profileFallbackImageUrl"
+            [alt]="post.title"></ion-img>
 
-        <article class="post-card">
-          <div class="post-thumb thumb-curry"></div>
-          <div class="post-body">
-            <div>
-              <p class="post-meta">Dinner · 19 likes</p>
-              <h3>Green curry bowl</h3>
-            </div>
-            <p>Creamy, aromatic, and built for a quick weeknight reset.</p>
-          </div>
-        </article>
+          <ion-card-header>
+            <p class="post-meta">{{ post.author?.username || profile!.username
+              }} · {{ post.likes }} likes</p>
+            <ion-card-title>{{ post.title }}</ion-card-title>
+          </ion-card-header>
 
-        <article class="post-card">
-          <div class="post-thumb thumb-dessert"></div>
-          <div class="post-body">
-            <div>
-              <p class="post-meta">Snack · 7 likes</p>
-              <h3>Citrus chia cups</h3>
-            </div>
-            <p>Small-batch prep with a crisp, fresh finish.</p>
-          </div>
-        </article>
+          <ion-card-content>
+            <p>{{ post.description }}</p>
+          </ion-card-content>
+        </ion-card>
+        }
+      }
       </div>
     </section>
   </div>

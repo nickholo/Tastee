@@ -35,6 +35,7 @@ public class JwtFilter extends OncePerRequestFilter{
 
     @Autowired
     ApplicationContext context;
+    
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
